@@ -78,7 +78,7 @@ def top_ngrams(ngram_dict,ntop):
     # return the top ngrams
     return ngrams[0:ntop]
 
-if __name__ == "__main__":
+if __name__ == "__main__": #So you can import ngrams as module without executing the code
     # script driver code
 
     # if no command line input, print a help message and quit
