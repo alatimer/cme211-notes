@@ -399,10 +399,13 @@ tuple unpacking to nicely get the return values in calling code.
 
 ### Variable scope
 
-Let's look at an example to start discussing variable scope:
+where are variables you define accesible?
+conditionas and loops have same scope as outer scope
 
+Let's look at an example to start discussing variable scope:
+global scope : total=42
 ```py
->>> total = 42
+>>> total = 42  #variable in outer scope not affected by changing it in inner scope of function
 >>> def summation(a, b):
 ...     total = 0
 ...     for n in range(a, b+1):
@@ -457,6 +460,7 @@ considered bad practice:
 ['hi', 'bye']
 >>> 
 ```
+How does function see a here? before it didn't know about total
 
 Even worse practice is modifying a mutable object from a higher scope:
 
@@ -485,6 +489,8 @@ function body has its own `a`:
 >>> 
 ```
 
+Trying to make a "point" to a different thing. This doesn't work. Here it defines a new "a" for use inside of the function. This must be why total+=1 didn't change the total variable from a higher scope, trying to make it point at 1 instead of 0
+
 ### Accessing a global variable
 
 This is bad practice, do not do this.  We will take off points.  We show you in
@@ -502,6 +508,8 @@ case you run into it.
 5050
 >>> 
 ```
+
+Here, global is telling the function to look at a higher scope for the variable total and then use it. Don't do this!
 
 ### Functions must be defined before they are used
 
@@ -584,6 +592,7 @@ function:
 >>> b
 2
 ```
+Python will not let you redirect an identifier at a global scope!
 
 ### Pass by object reference
 
